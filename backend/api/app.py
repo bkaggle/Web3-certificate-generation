@@ -50,11 +50,15 @@ def overlay_text(image, text, position, font_size, color):
     cv2.putText(image, text, position, font, font_size, color, 2, cv2.LINE_AA)
 
 # Insert Full Name, Logo, and Date on the certificate
-overlay_text(base_background_img, "John Doe", (x_full_name, y_full_name), 1.0, (255, 255, 255))
+overlay_text(base_background_img, "Naol Lamesa", (x_full_name, y_full_name), 1.0, (255, 255, 255))
 base_background_img[y_logo:y_logo + logo.shape[0], x_logo:x_logo + logo.shape[1]] = logo
 overlay_text(base_background_img, "January 9, 2024", (x_date, y_date), 1.0, (255, 255, 255))
 
-# Display or save the final certificate image
+# Save the final certificate image
+output_path = '../images/certificate.png'
+cv2.imwrite(output_path, base_background_img)
+
+# Display the final certificate image
 cv2.imshow('Certificate', base_background_img)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
